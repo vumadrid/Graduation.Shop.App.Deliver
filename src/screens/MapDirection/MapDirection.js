@@ -17,6 +17,7 @@ import { hasLocationPermission } from '../../services/Location';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_API_KEY } from '../../configs/environment';
 import i18n from '../../configs/i18n';
+import MapScreen from '../../components/Map/MapScreen';
 
 export default function MapDirection() {
   const route = useRoute();
@@ -97,28 +98,58 @@ export default function MapDirection() {
     <WrapperView>
       <View style={styles.flex}>
         <View style={[styles.flex, { backgroundColor: colors.background }]}>
-          <MapView
+          {/* <MapView
             style={[styles.container, { marginTop: mapMargin }]}
-            initialRegion={origin}
-            region={origin}
-            showsUserLocation={true}
+            initialRegion={{
+              latitude: 21.053156,
+              longitude: 105.7370272,
+              latitudeDelta: 0.09220100056534619,
+              longitudeDelta: 0.13487990945577621,
+            }}
+            region={{
+              latitude: 21.053156,
+              longitude: 105.7370272,
+              latitudeDelta: 0.09220100056534619,
+              longitudeDelta: 0.13487990945577621,
+            }}
             provider={PROVIDER_GOOGLE}
             showsMyLocationButton
             onMapReady={() => setMapMargin(0)}
             showsTraffic={false}
-            rotateEnabled={false}>
-            {destination && <Marker coordinate={destination} />}
+            rotateEnabled={false}
+            mapType="standard"
+            showsCompass={true}
+            showsUserLocation={true}
+            followsUserLocation={true}
+            zoomTapEnabled={true}
+            zoomEnabled={true}
+            loadingEnabled={true}
+          >
+            {destination && <Marker coordinate={{
+              latitude: 21.0556567,
+              longitude: 105.734720
+            }} />}
             {destination && origin && (
               <MapViewDirections
-                origin={origin}
-                destination={destination}
+                origin={
+                  {
+                    latitude: 21.053156,
+                    longitude: 105.7370272,
+
+                  }}
+                destination={
+                  {
+                    latitude: 21.0556567,
+                    longitude: 105.734720
+                  }}
                 strokeWidth={6}
                 strokeColor="#0f53ff"
                 timePrecision="now"
                 apikey={GOOGLE_API_KEY}
               />
             )}
-          </MapView>
+          </MapView> */}
+          <MapScreen />
           <TouchableOpacity
             activeOpacity={0.7}
             style={styles.button}
@@ -135,3 +166,4 @@ export default function MapDirection() {
     </WrapperView>
   );
 }
+
